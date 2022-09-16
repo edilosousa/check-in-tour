@@ -18,7 +18,7 @@ $("form").submit(function (e) {
     },
     success: function (data) {
       if (data === "true") {
-        window.location.href = "index.php";
+        window.location.href = "dashboard/index";
       } else {
         alert(data);
       }
