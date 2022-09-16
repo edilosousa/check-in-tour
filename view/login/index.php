@@ -9,9 +9,7 @@
     <title>Check-in Tour - Login</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sign-in/">
-
-    
-
+    <script src="utils/jquery/jquery-3.6.1.min.js"></script>
     <!-- Bootstrap core CSS -->
 <link href="utils/bootstrap5/css/bootstrap.min.css" rel="stylesheet">
 
@@ -43,12 +41,12 @@
     <h1 class="h3 mb-4 fw-normal">Tour</h1>
 
     <div class="form-floating">
-      <input type="text" class="form-control" id="floatingInput" autocomplete="off" placeholder="name@example.com">
-      <label for="floatingInput">Login</label>
+      <input type="text" class="form-control" id="login" autocomplete="off" placeholder="usuario">
+      <label for="login">Login</label>
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" autocomplete="off" placeholder="Password">
-      <label for="floatingPassword">Password</label>
+      <input type="password" class="form-control" id="password" autocomplete="off" placeholder="senha">
+      <label for="password">Password</label>
     </div>
 
     <!-- <div class="checkbox mb-3">
@@ -56,12 +54,12 @@
         <input type="checkbox" value="remember-me"> Remember me
       </label>
     </div> -->
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+    <button class="w-100 btn btn-lg btn-primary">Login</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
   </form>
+  <button id="btnTeste">Teste</button>
 </main>
-
-
+<script src="assets/js/validaAcesso.js"></script>
     
   </body>
 </html>
