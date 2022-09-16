@@ -57,7 +57,6 @@
     <button class="w-100 btn btn-lg btn-primary">Login</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
   </form>
-  <button id="btnTeste">Teste</button>
 </main>
 <script src="assets/js/validaAcesso.js"></script>
     
