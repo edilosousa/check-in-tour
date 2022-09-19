@@ -1,5 +1,8 @@
 var url = "../controller/visitante/visitante.controller.php";
 $(document).ready(function () {
+  
+  
+  
   $.ajax({
     type: "POST",
     url: url,
@@ -16,14 +19,41 @@ $(document).ready(function () {
                         "<td>"+visitante[1]+"</td>"+
                         "<td>"+visitante[2]+"</td>"+
                         "<td>"+visitante[3]+"</td>"+
-                        "<td>"+visitante[4]+"</td>"+
-                        "<td><button class='btn btn-sm btn-info'>Editar</td>"+
-                        "<td><button class='btn btn-sm btn-danger'>Excluir</td>"+
+                        "<td>"+visitante[8]+"</td>"+
+                        "<td><button class='btn btn-sm btn-info' onClick='editarVisitante("+visitante[0]+")'>Editar</td>"+
+                        "<td><button class='btn btn-sm btn-danger' onClick='excluirVisitante("+visitante[0]+")' data-bs-toggle='modal' data-bs-target='#excluirVisitante'>Excluir</td>"+
                     "</tr>";
-        console.log(visitante[1]);
     });
       $("#dadosVisitante").html(table);
-      //   alert(data)
     },
   });
+
 });
+$("#table-visitante").DataTable();
+function editarVisitante(id){
+  window.location.href = `../visitante/editar/${id}`;
+}
+
+function excluirVisitante(id){
+  $("#id-visitante").val(id);
+}
+
+$("#btn-excluir-visitante").click(function(){
+  var id = $("#id-visitante").val();
+  $.ajax({
+    type: "POST",
+    url: url,
+    data: {
+      funcao: "excluirVisitante",
+      dados: {
+        id:id,
+        status: 2
+      },
+    },
+    success: function (data) {
+
+    }
+    });
+});
+
+  
