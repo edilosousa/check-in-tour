@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
--- Servidor:                     localhost
--- Versão do servidor:           10.4.20-MariaDB - mariadb.org binary distribution
+-- Servidor:                     127.0.0.1
+-- Versão do servidor:           10.4.22-MariaDB - mariadb.org binary distribution
 -- OS do Servidor:               Win64
 -- HeidiSQL Versão:              11.3.0.6295
 -- --------------------------------------------------------
@@ -17,6 +17,16 @@
 CREATE DATABASE IF NOT EXISTS `checkintour` /*!40100 DEFAULT CHARACTER SET armscii8 COLLATE armscii8_bin */;
 USE `checkintour`;
 
+-- Copiando estrutura para tabela checkintour.tipos
+CREATE TABLE IF NOT EXISTS `tipos` (
+  `tipo_id` int(11) NOT NULL AUTO_INCREMENT,
+  `tipo_descricao` varchar(100) COLLATE armscii8_bin NOT NULL,
+  `tipo_status` int(11) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`tipo_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin COMMENT='tabela responsavel por armazenar se um visitante é estrangeiro ou brasileiro';
+
+-- Exportação de dados foi desmarcado.
+
 -- Copiando estrutura para tabela checkintour.usuarios
 CREATE TABLE IF NOT EXISTS `usuarios` (
   `usuario_id` int(2) NOT NULL AUTO_INCREMENT,
@@ -26,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `usuario_status` int(11) NOT NULL DEFAULT 1,
   `usuario_data` datetime NOT NULL,
   PRIMARY KEY (`usuario_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin COMMENT='tabela de usuario para definicões de logins de acesso ao sistema.';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin COMMENT='tabela de usuario para definicões de logins de acesso ao sistema.';
 
 -- Exportação de dados foi desmarcado.
 
@@ -41,8 +51,10 @@ CREATE TABLE IF NOT EXISTS `visitantes` (
   `visitante_status` int(11) NOT NULL DEFAULT 1,
   PRIMARY KEY (`visitante_id`),
   KEY `FK_visitantes_usuarios` (`usuario_id`),
+  KEY `FK_tipo_visitante` (`tipo_visitante_id`),
+  CONSTRAINT `FK_tipo_visitante` FOREIGN KEY (`tipo_visitante_id`) REFERENCES `tipos` (`tipo_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_visitantes_usuarios` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`usuario_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin COMMENT='tabela de visitantes';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin COMMENT='tabela de visitantes';
 
 -- Exportação de dados foi desmarcado.
 
