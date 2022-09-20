@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 
@@ -13,6 +12,8 @@
    <script src="../utils/jquery/jquery-3.6.1.min.js"></script>
    <!-- Bootstrap core CSS -->
    <link href="../utils/bootstrap5/css/bootstrap.min.css" rel="stylesheet">
+   <!-- Chart JS -->
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 
@@ -41,17 +42,18 @@
          </div>
       </div>
    </nav>
-   <div class="row">
-      <div class="col-sm-12">
-         <div class="col-sm-6" id="graph">
-
-         </div>
-         <div class="col-sm-6" id="mesVisita">
-            
+   <div class="container">
+      <div class="row">
+         <div class="col-sm-12" id="graph">
+            <h5>Gráfico</h5>
+            <canvas id="myChart"></canvas>
          </div>
       </div>
-   </div>
-   <script src="assets/js/dashboard.js"></script>
-</body>
+      <div class="row" id="mesVisita">
 
+      </div>
+   </div>
+
+      <script src="../assets/js/dashboard.js"></script>
+</body>
 </html>
