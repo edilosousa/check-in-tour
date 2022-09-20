@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 class Login
 {
@@ -13,6 +14,7 @@ class Login
         if ($read) {
             if (md5($password) === $read[0]['usuario_senha']) {
                 echo 'true';
+                $_SESSION['idUsuario'] = $read[0]['usuario_id'];
             } else {
                 echo "Login ou senha inválidos!";
             }

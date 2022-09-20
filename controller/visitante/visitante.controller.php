@@ -28,6 +28,11 @@ class VisitanteController {
         $buscar = new Visitante();
         $buscar->excluirVisitante($_POST['dados']);
     }
+    
+    public function cadastrarVisitante(){
+        $buscar = new Visitante();
+        $buscar->cadastrarVisitante($_POST['dados']);
+    }
 
     
 }
