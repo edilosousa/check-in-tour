@@ -34,6 +34,11 @@ class VisitanteController {
         $buscar->cadastrarVisitante($_POST['dados']);
     }
 
+    public function buscarVisitanteVisita(){
+        $buscar = new Visitante();
+        $buscar->buscarVisitanteVisita($_POST['dados']['rg']);
+    }
+
     
 }
 

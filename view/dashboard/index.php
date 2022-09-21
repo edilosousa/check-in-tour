@@ -10,6 +10,7 @@
    <title>Check-in Tour - Dashboard</title>
 
    <script src="../utils/jquery/jquery-3.6.1.min.js"></script>
+   <script src="../utils/bootstrap5/js/bootstrap.min.js"></script>
    <!-- Bootstrap core CSS -->
    <link href="../utils/bootstrap5/css/bootstrap.min.css" rel="stylesheet">
    <!-- Chart JS -->
@@ -42,18 +43,42 @@
          </div>
       </div>
    </nav>
-   <div class="container">
+   <div class="container mt-5">
       <div class="row">
          <div class="col-sm-12" id="graph">
-            <h5>Gráfico</h5>
-            <canvas id="myChart"></canvas>
+            <h5>Gráfico - Ano 2022</h5>
+            <canvas id="myChart" width="1200" height="350"></canvas>
          </div>
       </div>
-      <div class="row" id="mesVisita">
-
+      <div class="row" id="mesVisita"></div>
+      <div class="row mt-4">
+         <div class="col-sm-4"></div>
+         <div class="col-sm-4">
+            <div class="d-grid gap-2 col-6 mx-auto">
+               <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#checkinModal" type="button">Check In</button>
+            </div>
+         </div>
+         <div class="col-sm-4"></div>
       </div>
    </div>
 
-      <script src="../assets/js/dashboard.js"></script>
+   <!-- Modal -->
+   <div class="modal fade" id="checkinModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Check In de visitante</h5>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               <input type="text" class="form-control" id="buscarVisitante" placeholder="Número de identificação"/>
+            </div>
+            <div class="modal-footer text-start" id="footerBuscarVisistante">
+            </div>
+         </div>
+      </div>
+   </div>
+   <script src="../assets/js/dashboard.js"></script>
 </body>
+
 </html>

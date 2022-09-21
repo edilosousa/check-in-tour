@@ -1,4 +1,5 @@
 var url = "../controller/dashboard/dashboard.controller.php";
+var url2 = "../controller/visitante/visitante.controller.php";
 
 $(document).ready(function () {
   var card = "";
@@ -25,25 +26,26 @@ $(document).ready(function () {
           "</div>" +
           "</div>";
       });
-      $("#mesVisita").html(card);
+      //   $("#mesVisita").html(card);
     },
   });
 
   function gerarGrafico(obj) {
     var labels = [];
+    var datas = [];
     for (var i = 0; i < obj.length; i++) {
-      labels += '"'+obj[i][1] + ",";
-      // console.log(obj[i][1])
+      labels.push(obj[i][1]);
+      datas.push(obj[i][2]);
     }
-    console.log(labels);
+    console.log(datas);
     const data = {
       labels: labels,
       datasets: [
         {
-          label: "My First dataset",
-          backgroundColor: "rgb(255, 99, 132)",
-          borderColor: "rgb(255, 99, 132)",
-          data: [0, 10, 5, 2, 20, 30, 45],
+          label: "Quantidade de visitantes por mês",
+          backgroundColor: "rgb(0, 0, 255)",
+          borderColor: "rgb(70,130,180)",
+          data: datas,
         },
       ],
     };
@@ -78,4 +80,33 @@ $(document).ready(function () {
   //   };
 
   //   const myChart = new Chart(document.getElementById("myChart"), config);
+});
+
+var temporiza;
+$("#buscarVisitante").on("input", function () {
+  $("#footerBuscarVisistante").html("Buscando...");
+  var buscarVisitante = $("#buscarVisitante").val();
+  clearTimeout(temporiza);
+  temporiza = setTimeout(function () {
+    $("#footerBuscarVisistante").html("");
+    $.ajax({
+      type: "POST",
+      url: url2,
+      data: {
+        funcao: "buscarVisitanteVisita",
+        dados: {
+            rg: buscarVisitante
+        },
+      },
+      success: function (data) {
+        if(data != 0){
+            const obj = JSON.parse(data);
+            obj.forEach(function (visitante) {
+        
+                $("#footerBuscarVisistante").html(visitante[1]);
+            });
+        }
+      },
+    });
+  }, 3000);
 });
