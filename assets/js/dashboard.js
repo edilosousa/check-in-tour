@@ -1,5 +1,6 @@
 var url = "../controller/dashboard/dashboard.controller.php";
 var url2 = "../controller/visitante/visitante.controller.php";
+var url3 = "../controller/log/log.controller.php";
 
 $(document).ready(function () {
   var card = "";
@@ -98,15 +99,48 @@ $("#buscarVisitante").on("input", function () {
             rg: buscarVisitante
         },
       },
+      beforeSend: function (){
+        $("#footerBuscarVisistante").html("")
+      },
       success: function (data) {
         if(data != 0){
             const obj = JSON.parse(data);
             obj.forEach(function (visitante) {
-        
-                $("#footerBuscarVisistante").html(visitante[1]);
+                // 
+                $("#footerBuscarVisistante").html("<button class='btn btn-success' id='btn-confirm-visita' onClick='btnConfirmVisita("+visitante[0]+")'>"+visitante[1]+"</button>");
             });
+        }else{
+            $("#footerBuscarVisistante").html("Não há registros com esse número de identificação!");
         }
       },
     });
   }, 3000);
 });
+
+function btnConfirmVisita(id){
+    $.ajax({
+        type: "POST",
+        url: url3,
+        data: {
+          funcao: "registrarVisitante",
+          dados: {
+            id: id
+          },
+        },
+        beforeSend: function () {
+            $("#btn-confirm-visita").prop("disabled", true)
+        },
+        success: function (data) {
+            if(data == 'true'){
+                $("#footerBuscarVisistante").append("<br><div class='alert alert-success mt-2' role='alert'>" +
+                                                        "Visitante confirmado!"+
+                                                        "</div>");
+                setTimeout(function(){
+                    window.location.href = "../dashboard/index";
+                },2000)                                                        
+            }else{
+                
+            }
+        }
+    });
+}

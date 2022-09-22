@@ -3,22 +3,19 @@
 class Log
 {
 
-    public function buscarVisitante($rg)
+    public function registrarVisitante($id)
     {
         include '../../config/connection.php';
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $data = $conn->prepare('SELECT * FROM usuarios WHERE usuario_login = :login');
-        $data->execute(array('login' => $login));
-        $read = $data->fetchAll();
-        if ($read) {
-            if (md5($password) === $read[0]['usuario_senha']) {
-                echo 'true';
-                $_SESSION['idUsuario'] = $read[0]['usuario_id'];
-            } else {
-                echo "Login ou senha inválidos!";
-            }
-        } else {
-            echo "Login ou senha inválidos!";
+
+        $sql = "INSERT INTO log_visitas (log_visitante_id, log_data_entrada) VALUES (?,?)";
+        $data =  $conn->prepare($sql);
+        $data->execute( [ $id, date('Y-m-d H:i:s')  ] );
+
+        if($conn->lastInsertId() > 0 ){
+            echo 'true';
+        }else{
+            echo 'false';
         }
     }
 }

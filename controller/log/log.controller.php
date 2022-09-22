@@ -4,13 +4,13 @@ include '../../model/log/log.model.php';
 $funcao = $_POST['funcao'];
 
 $buscar = new LogController();
-$buscar->$funcao($_POST['dados']);
+$buscar->$funcao($_POST['dados']['id']);
 
 class LogController {
     
-    public function buscarVisitante($rg){
+    public function registrarVisitante($id){
         $acesso = new Log();
-        $acesso->buscarVisitante($rg);
+        $acesso->registrarVisitante($id);
     }
 
 }
