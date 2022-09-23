@@ -30,7 +30,7 @@
                   <a class="nav-link active fw-bold" aria-current="page" href="../dashboard/index">Dashboard</a>
                </li>
                <li class="nav-item ">
-                  <a class="nav-link fw-bold" href="#">Usuário</a>
+                  <a class="nav-link fw-bold" href="../usuario/index">Usuário</a>
                </li>
                <li class="nav-item">
                   <a class="nav-link fw-bold" href="../visitante/index">Visitante</a>

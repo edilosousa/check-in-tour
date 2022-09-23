@@ -38,7 +38,7 @@ $(document).ready(function () {
       labels.push(obj[i][1]);
       datas.push(obj[i][2]);
     }
-    console.log(datas);
+    console.log(labels);
     const data = {
       labels: labels,
       datasets: [
