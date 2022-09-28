@@ -37,12 +37,12 @@
               <a
                 class="nav-link fw-bold"
                 aria-current="page"
-                href="../dashboard/index"
+                href="../../dashboard/index"
                 >Dashboard</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link active fw-bold" href="">Usuário</a>
+              <a class="nav-link active fw-bold" href="../../usuario/index">Usuário</a>
             </li>
             <li class="nav-item">
               <a class="nav-link fw-bold" href="../../visitante/index"
@@ -56,7 +56,7 @@
             </li>
           </ul>
           <form class="d-flex">
-            <a class="btn btn-sm btn-danger" href="../">Sair</a>
+            <a class="btn btn-sm btn-danger" href="../../">Sair</a>
           </form>
         </div>
       </div>
@@ -67,7 +67,7 @@
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item active" aria-current="page">
-                <a href="../../visitante/index" class="link-secondary">Visitantes</a>
+                <a href="../../usuario/index" class="link-secondary">Usuários</a>
               </li>
               <li class="breadcrumb-item active" aria-current="page">Editar</li>
             </ol>
@@ -81,24 +81,24 @@
               <input type="text" id="nome" class="form-control" />
             </div>
             <div class="col-sm-6">
-              <label>RG:</label>
-              <input type="text" id="rg" class="form-control" />
+              <label>Login:</label>
+              <input type="text" id="login" class="form-control" />
             </div>
             <div class="col-sm-6">
-              <label>Tipo de visitante</label>
+              <label>Password:</label>
+              <input type="password" id="password" class="form-control" />
+            </div>
+            <div class="col-sm-4">
+              <label>Tipo de usuário</label>
               <select class="form-control" id="tipo">
                 <option>Selecione</option>
-                <option value="1">Brasileiro</option>
-                <option value="2">Estrangeiro</option>
+                <option value="1">Administrador</option>
+                <option value="2">Recepcionista</option>
               </select>
             </div>
             <div class="col-sm-4">
               <label>Data de Cadastro:</label>
               <input type="text" disabled="true" id="data-cad" class="form-control" />
-            </div>
-            <div class="col-sm-4">
-              <label>Cadastrado por:</label>
-              <input type="text" disabled="true" id="cad-por" class="form-control" />
             </div>
             <div class="col-sm-4">
               <label>Status:</label>
@@ -115,5 +115,5 @@
       </div>
     </div>
   </body>
-  <script src="../../assets/js/editarVisitante.js"></script>
+  <script src="../../assets/js/editarUsuario.js"></script>
 </html>

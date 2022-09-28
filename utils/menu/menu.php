@@ -27,7 +27,7 @@
          <div class="collapse navbar-collapse mt-4" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-lg-0">
                <li class="nav-item">
-                  <a class="nav-link active fw-bold" aria-current="page" href="../dashboard/index">Dashboard</a>
+                  <a class="nav-link fw-bold" aria-current="page" href="../dashboard/index">Dashboard</a>
                </li>
                <li class="nav-item ">
                   <a class="nav-link fw-bold" href="../usuario/index">Usuário</a>

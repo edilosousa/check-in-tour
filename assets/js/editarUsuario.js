@@ -1,4 +1,4 @@
-var url = "../../controller/visitante/visitante.controller.php";
+var url = "../../controller/usuario/usuario.controller.php";
 $(document).ready(function(){
     var url_atual = window.location.href;
     var retorno = url_atual.split("/");
@@ -7,42 +7,45 @@ $(document).ready(function(){
         type: "POST",
         url: url,
         data: {
-          funcao: "buscarVisitante",
+          funcao: "buscarUsuario",
           dados: {
             id: retorno[6]
           },
         },
         success: function (data) {
           const obj = JSON.parse(data);
-          $("#id").val(obj[0]['visitante_id']);
-          $("#nome").val(obj[0]['visitante_nome']);
-          $("#rg").val(obj[0]['visitante_rg']);
-          $("#data-cad").val(obj[0]['visitante_data_entrada']);
-          $("#cad-por").val(obj[0]['usuario_nome']);
-          $("#tipo").val(obj[0]['tipo_visitante_id']);
-          $("#status").val(obj[0]['visitante_status']);
+          $("#id").val(obj[0]['usuario_id']);
+          $("#nome").val(obj[0]['usuario_nome']);
+          $("#login").val(obj[0]['usuario_login']);
+          $("#data-cad").val(obj[0]['usuario_data']);
+          $("#tipo").val(obj[0]['usuario_tipo']);
+          $("#status").val(obj[0]['usuario_status']);
         },
       });
+  
       $("ul.navbar-nav > li > a").removeClass('active');
-      urldashboard = '../../visitante/index'
+      urldashboard = '../../usuario/index'
       $("ul.navbar-nav > li > a[href='"+urldashboard+"']").addClass('active');
 });
 
 $( "#button-edit" ).click(function() {
     var id = $("#id").val();
     var nome = $("#nome").val();
-    var rg = $("#rg").val();
+    var login = $("#login").val();
+    var password = $("#password").val();
     var tipo = $("#tipo").val();
     var status = $("#status").val();
+
     $.ajax({
         type: "POST",
         url: url,
         data: {
-          funcao: "editarVisitante",
+          funcao: "editarUsuario",
           dados: {
             id: id,
             nome: nome,
-            rg: rg,
+            login: login,
+            password: password,
             tipo: tipo,
             status: status
           },
@@ -50,7 +53,7 @@ $( "#button-edit" ).click(function() {
         success: function (data) {
           if(data === 'true'){
             $(".card-header").append("<div class='alert alert-success alert-div' style=' padding-top:0px; padding-bottom:0px; margin-top:-42px; margin-left:70%; width:30%; ' role='alert'>"+
-                                    "Visitante alterado com sucesso!"+
+                                    "Usuário alterado com sucesso!"+
                                     "</div>");
             setTimeout(() => {
                 $('.alert-div').slideUp();

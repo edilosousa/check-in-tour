@@ -40,6 +40,55 @@ $(document).ready(function () {
       $("#dadosVisitante").html(table);
     },
   });
+  $("ul.navbar-nav > li > a").removeClass('active');
+    urldashboard = '../visitante/index'
+    $("ul.navbar-nav > li > a[href='"+urldashboard+"']").addClass('active');
+});
+
+
+$("#btn-buscar-visitante").click(function(){
+  var nome = $("#inputNome").val();
+  $.ajax({
+    type: "POST",
+    url: url,
+    data: {
+      funcao: "buscarVisitanteNome",
+      dados: {
+        nome: nome
+      },
+    },
+    success: function (data) {
+      const obj = JSON.parse(data);
+      var table = "";
+      obj.forEach(function (visitante) {
+        table +=
+          "<tr>" +
+          "<td>" +
+          visitante[0] +
+          "</td>" +
+          "<td>" +
+          visitante[1] +
+          "</td>" +
+          "<td>" +
+          visitante[2] +
+          "</td>" +
+          "<td>" +
+          visitante[3] +
+          "</td>" +
+          "<td>" +
+          visitante[8] +
+          "</td>" +
+          "<td><button class='btn btn-sm btn-info' onClick='editarVisitante(" +
+          visitante[0] +
+          ")'>Editar</td>" +
+          "<td><button class='btn btn-sm btn-danger' onClick='excluirVisitante(" +
+          visitante[0] +
+          ")' data-bs-toggle='modal' data-bs-target='#excluirVisitante'>Excluir</td>" +
+          "</tr>";
+      });
+      $("#dadosVisitante").html(table);
+    },
+  });
 });
 
 // $("#table-visitante").DataTable();

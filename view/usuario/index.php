@@ -18,7 +18,6 @@ include 'utils/menu/menu.php';
             <th>Nome</th>
             <th>Login</th>
             <th>Tipo</th>
-            <th>Status</th>
             <th colspan="2"></th>
           </thead>
           <tbody id="dadosUsuario"></tbody>
@@ -66,6 +65,10 @@ include 'utils/menu/menu.php';
               <input type="text" id="loginCad" class="form-control" />
             </div>
             <div class="col-sm-6">
+              <label>Password:</label>
+              <input type="password" id="passwordCad" class="form-control" />
+            </div>
+            <div class="col-sm-12">
               <label>Tipo de usuário</label>
               <select class="form-control" id="tipoCad">
                 <option>Selecione</option>

@@ -29,6 +29,19 @@ class Visitante
         print_r(json_encode($array));
     }
 
+    public function buscarVisitanteNome($dados)
+    {
+        include '../../config/connection.php';
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $data = $conn->prepare("SELECT * FROM  visitantes v inner join usuarios u ON u.usuario_id = v.usuario_id WHERE v.visitante_nome like '".$dados['nome']."%'");
+        $data->execute();
+        while ($row = $data->fetchAll()) {
+            $array = $row;
+        }
+
+        print_r(json_encode($array));
+    }
+
     public function editarVisitante($dados)
     {
         include '../../config/connection.php';

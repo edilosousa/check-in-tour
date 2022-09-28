@@ -19,6 +19,11 @@ class VisitanteController {
         $buscar->buscarVisitante($_POST['dados']['id']);
     }
 
+    public function buscarVisitanteNome(){
+        $buscar = new Visitante();
+        $buscar->buscarVisitanteNome($_POST['dados']);
+    }
+
     public function editarVisitante(){
         $buscar = new Visitante();
         $buscar->editarVisitante($_POST['dados']);

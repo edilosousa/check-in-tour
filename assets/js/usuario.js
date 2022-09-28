@@ -12,7 +12,7 @@ $(document).ready(function () {
       const obj = JSON.parse(data);
       var table = "";
       obj.forEach(function (usuario) {
-        if(usuario[4] == '1'){
+        if(usuario[6] == '1'){
           var tipoUsuario = 'Administrador'
         }else{
           var tipoUsuario = 'Recepecionista'
@@ -31,9 +31,6 @@ $(document).ready(function () {
           "<td>" +
           tipoUsuario +
           "</td>" +
-          "<td>" +
-          usuario[5] +
-          "</td>" +
           "<td><button class='btn btn-sm btn-info' onClick='editarUsuario(" +
           usuario[0] +
           ")'>Editar</td>" +
@@ -45,6 +42,10 @@ $(document).ready(function () {
       $("#dadosUsuario").html(table);
     },
   });
+    $("ul.navbar-nav > li > a").removeClass('active');
+    urldashboard = '../usuario/index'
+    $("ul.navbar-nav > li > a[href='"+urldashboard+"']").addClass('active');
+  
 });
 
 // $("#table-visitante").DataTable();
@@ -104,6 +105,7 @@ $("#btn-cad-usuario").click(function(){
   var nome = $("#nomeCad").val();
   var login = $("#loginCad").val();
   var tipo = $("#tipoCad").val();
+  var password = $("#passwordCad").val();
   $.ajax({
       type: "POST",
       url: url,
@@ -113,6 +115,7 @@ $("#btn-cad-usuario").click(function(){
           nome: nome,
           login: login,
           tipo: tipo,
+          password: password
         },
       },
       success: function (data) {
