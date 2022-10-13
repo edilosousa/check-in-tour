@@ -106,38 +106,42 @@ $("#btn-cad-usuario").click(function(){
   var login = $("#loginCad").val();
   var tipo = $("#tipoCad").val();
   var password = $("#passwordCad").val();
-  $.ajax({
-      type: "POST",
-      url: url,
-      data: {
-        funcao: "cadastrarUsuario",
-        dados: {
-          nome: nome,
-          login: login,
-          tipo: tipo,
-          password: password
+  if( nome === '' || login === '' || tipo === '' || password === ''){
+    alert('Campos obrigatórios a serem preenchidos!')
+  }else{
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: {
+          funcao: "cadastrarUsuario",
+          dados: {
+            nome: nome,
+            login: login,
+            tipo: tipo,
+            password: password
+          },
         },
-      },
-      success: function (data) {
-        if(data === 'true'){
-          $("#novoUsuario").modal("hide");
-          $(".card-header").append("<div class='alert alert-success alert-div' style=' padding-top:0px; padding-bottom:0px; margin-top:-42px; margin-left:70%; width:30%; ' role='alert'>"+
-                                  "Usuario cadastrado com sucesso!"+
-                                  "</div>");
-          setTimeout(() => {
-              $('.alert-div').slideUp();
-              location.reload();
-          }, 3000);                        
-        }else{
-          $("#novoUsuario").modal("hide");
-          $(".card-header").append("<div class='alert alert-danger alert-div' style=' padding-top:0px; padding-bottom:0px; margin-top:-42px; margin-left:70%; width:30%; ' role='alert'>"+
-                                  "Não foi possível cadastrar esse usuário"+
-                                  "</div>");
-          setTimeout(() => {
-              $('.alert-div').slideUp();
-              location.reload();
-          }, 3000); 
-        }
-      },
+        success: function (data) {
+          if(data === 'true'){
+            $("#novoUsuario").modal("hide");
+            $(".card-header").append("<div class='alert alert-success alert-div' style=' padding-top:0px; padding-bottom:0px; margin-top:-42px; margin-left:70%; width:30%; ' role='alert'>"+
+                                    "Usuario cadastrado com sucesso!"+
+                                    "</div>");
+            setTimeout(() => {
+                $('.alert-div').slideUp();
+                location.reload();
+            }, 3000);                        
+          }else{
+            $("#novoUsuario").modal("hide");
+            $(".card-header").append("<div class='alert alert-danger alert-div' style=' padding-top:0px; padding-bottom:0px; margin-top:-42px; margin-left:70%; width:30%; ' role='alert'>"+
+                                    "Não foi possível cadastrar esse usuário"+
+                                    "</div>");
+            setTimeout(() => {
+                $('.alert-div').slideUp();
+                location.reload();
+            }, 3000); 
+          }
+        },
     });
+  }
 });

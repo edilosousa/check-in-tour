@@ -34,35 +34,39 @@ $( "#button-edit" ).click(function() {
     var rg = $("#rg").val();
     var tipo = $("#tipo").val();
     var status = $("#status").val();
-    $.ajax({
-        type: "POST",
-        url: url,
-        data: {
-          funcao: "editarVisitante",
-          dados: {
-            id: id,
-            nome: nome,
-            rg: rg,
-            tipo: tipo,
-            status: status
+    if( nome === '' || rg === '' || tipo === ''){
+      alert('Campos obrigatórios a serem preenchidos!')
+    }else{
+      $.ajax({
+          type: "POST",
+          url: url,
+          data: {
+            funcao: "editarVisitante",
+            dados: {
+              id: id,
+              nome: nome,
+              rg: rg,
+              tipo: tipo,
+              status: status
+            },
           },
-        },
-        success: function (data) {
-          if(data === 'true'){
-            $(".card-header").append("<div class='alert alert-success alert-div' style=' padding-top:0px; padding-bottom:0px; margin-top:-42px; margin-left:70%; width:30%; ' role='alert'>"+
-                                    "Visitante alterado com sucesso!"+
-                                    "</div>");
-            setTimeout(() => {
-                $('.alert-div').slideUp();
-            }, 3000);                        
-          }else{
-            $(".card-header").append("<div class='alert alert-danger alert-div' style=' padding-top:0px; padding-bottom:0px; margin-top:-42px; margin-left:70%; width:30%; ' role='alert'>"+
-                                    "Nada alterado nesse cadastro"+
-                                    "</div>");
-            setTimeout(() => {
-                $('.alert-div').slideUp();
-            }, 3000); 
-          }
-        },
+          success: function (data) {
+            if(data === 'true'){
+              $(".card-header").append("<div class='alert alert-success alert-div' style=' padding-top:0px; padding-bottom:0px; margin-top:-42px; margin-left:70%; width:30%; ' role='alert'>"+
+                                      "Visitante alterado com sucesso!"+
+                                      "</div>");
+              setTimeout(() => {
+                  $('.alert-div').slideUp();
+              }, 3000);                        
+            }else{
+              $(".card-header").append("<div class='alert alert-danger alert-div' style=' padding-top:0px; padding-bottom:0px; margin-top:-42px; margin-left:70%; width:30%; ' role='alert'>"+
+                                      "Nada alterado nesse cadastro"+
+                                      "</div>");
+              setTimeout(() => {
+                  $('.alert-div').slideUp();
+              }, 3000); 
+            }
+          },
       });
+    }
 });

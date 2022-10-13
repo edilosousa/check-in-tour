@@ -148,37 +148,41 @@ $("#btn-cad-visitante").click(function(){
   var nome = $("#nomeCad").val();
   var rg = $("#rgCad").val();
   var tipo = $("#tipoCad").val();
-  $.ajax({
-      type: "POST",
-      url: url,
-      data: {
-        funcao: "cadastrarVisitante",
-        dados: {
-          nome: nome,
-          rg: rg,
-          tipo: tipo,
+  if( nome === '' || rg === '' || tipo === ''){
+    alert('Campos obrigatórios a serem preenchidos!')
+  }else{
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: {
+          funcao: "cadastrarVisitante",
+          dados: {
+            nome: nome,
+            rg: rg,
+            tipo: tipo,
+          },
         },
-      },
-      success: function (data) {
-        if(data === 'true'){
-          $("#novoVisitante").modal("hide");
-          $(".card-header").append("<div class='alert alert-success alert-div' style=' padding-top:0px; padding-bottom:0px; margin-top:-42px; margin-left:70%; width:30%; ' role='alert'>"+
-                                  "Visitante cadastrado com sucesso!"+
-                                  "</div>");
-          setTimeout(() => {
-              $('.alert-div').slideUp();
-              location.reload();
-          }, 3000);                        
-        }else{
-          $("#novoVisitante").modal("hide");
-          $(".card-header").append("<div class='alert alert-danger alert-div' style=' padding-top:0px; padding-bottom:0px; margin-top:-42px; margin-left:70%; width:30%; ' role='alert'>"+
-                                  "Não foi possível cadastrar esse visitante"+
-                                  "</div>");
-          setTimeout(() => {
-              $('.alert-div').slideUp();
-              location.reload();
-          }, 3000); 
-        }
-      },
+        success: function (data) {
+          if(data === 'true'){
+            $("#novoVisitante").modal("hide");
+            $(".card-header").append("<div class='alert alert-success alert-div' style=' padding-top:0px; padding-bottom:0px; margin-top:-42px; margin-left:70%; width:30%; ' role='alert'>"+
+                                    "Visitante cadastrado com sucesso!"+
+                                    "</div>");
+            setTimeout(() => {
+                $('.alert-div').slideUp();
+                location.reload();
+            }, 3000);                        
+          }else{
+            $("#novoVisitante").modal("hide");
+            $(".card-header").append("<div class='alert alert-danger alert-div' style=' padding-top:0px; padding-bottom:0px; margin-top:-42px; margin-left:70%; width:30%; ' role='alert'>"+
+                                    "Não foi possível cadastrar esse visitante"+
+                                    "</div>");
+            setTimeout(() => {
+                $('.alert-div').slideUp();
+                location.reload();
+            }, 3000); 
+          }
+        },
     });
+  }
 });
