@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
 -- Servidor:                     localhost
--- Versão do servidor:           10.4.20-MariaDB - mariadb.org binary distribution
+-- Versão do servidor:           10.4.24-MariaDB - mariadb.org binary distribution
 -- OS do Servidor:               Win64
 -- HeidiSQL Versão:              11.3.0.6295
 -- --------------------------------------------------------
@@ -22,29 +22,12 @@ CREATE TABLE IF NOT EXISTS `log_visitas` (
   `log_id` int(11) NOT NULL AUTO_INCREMENT,
   `log_visitante_id` int(11) NOT NULL DEFAULT 0,
   `log_data_entrada` datetime NOT NULL,
-  PRIMARY KEY (`log_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin COMMENT='Log de visita registra uma visita de um visitante ao ser cadastrado.';
+  PRIMARY KEY (`log_id`),
+  KEY `FK_VISITANTE_ID` (`log_visitante_id`),
+  CONSTRAINT `FK_VISITANTE_ID` FOREIGN KEY (`log_visitante_id`) REFERENCES `visitantes` (`visitante_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin COMMENT='Log de visita registra uma visita de um visitante ao ser cadastrado.';
 
--- Copiando dados para a tabela checkintour.log_visitas: ~1 rows (aproximadamente)
-/*!40000 ALTER TABLE `log_visitas` DISABLE KEYS */;
-INSERT INTO `log_visitas` (`log_id`, `log_visitante_id`, `log_data_entrada`) VALUES
-	(2, 18, '2022-09-20 12:19:02'),
-	(3, 19, '2022-09-20 12:21:13'),
-	(4, 20, '2022-09-20 12:21:42'),
-	(5, 18, '2022-09-20 12:26:02'),
-	(6, 18, '2022-09-20 12:33:02'),
-	(7, 18, '2022-08-20 16:19:02'),
-	(8, 20, '2022-07-20 16:19:02'),
-	(9, 19, '2022-06-20 16:19:02'),
-	(10, 20, '2022-05-20 16:19:02'),
-	(11, 19, '2022-04-20 16:19:02'),
-	(12, 19, '2022-03-20 16:19:02'),
-	(13, 20, '2022-02-20 16:19:02'),
-	(14, 18, '2022-01-20 16:19:02'),
-	(15, 18, '2022-10-20 16:19:02'),
-	(16, 20, '2022-11-20 16:19:02'),
-	(17, 19, '2022-12-20 16:19:02');
-/*!40000 ALTER TABLE `log_visitas` ENABLE KEYS */;
+-- Exportação de dados foi desmarcado.
 
 -- Copiando estrutura para tabela checkintour.tipos
 CREATE TABLE IF NOT EXISTS `tipos` (
@@ -54,12 +37,7 @@ CREATE TABLE IF NOT EXISTS `tipos` (
   PRIMARY KEY (`tipo_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin COMMENT='tabela responsavel por armazenar se um visitante é estrangeiro ou brasileiro';
 
--- Copiando dados para a tabela checkintour.tipos: ~2 rows (aproximadamente)
-/*!40000 ALTER TABLE `tipos` DISABLE KEYS */;
-INSERT INTO `tipos` (`tipo_id`, `tipo_descricao`, `tipo_status`) VALUES
-	(1, 'Brasileiro', 1),
-	(2, 'Estrangeiro', 1);
-/*!40000 ALTER TABLE `tipos` ENABLE KEYS */;
+-- Exportação de dados foi desmarcado.
 
 -- Copiando estrutura para tabela checkintour.usuarios
 CREATE TABLE IF NOT EXISTS `usuarios` (
@@ -71,13 +49,9 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `usuario_data` datetime NOT NULL,
   `usuario_tipo` int(11) NOT NULL COMMENT '1 = admin, 2 = recep',
   PRIMARY KEY (`usuario_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin COMMENT='tabela de usuario para definicões de logins de acesso ao sistema.';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin COMMENT='tabela de usuario para definicões de logins de acesso ao sistema.';
 
--- Copiando dados para a tabela checkintour.usuarios: ~0 rows (aproximadamente)
-/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` (`usuario_id`, `usuario_nome`, `usuario_login`, `usuario_senha`, `usuario_status`, `usuario_data`, `usuario_tipo`) VALUES
-	(1, 'Administrador', 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, '2022-09-16 08:01:52', 1);
-/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
+-- Exportação de dados foi desmarcado.
 
 -- Copiando estrutura para tabela checkintour.visitantes
 CREATE TABLE IF NOT EXISTS `visitantes` (
@@ -95,13 +69,7 @@ CREATE TABLE IF NOT EXISTS `visitantes` (
   CONSTRAINT `FK_visitantes_usuarios` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`usuario_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin COMMENT='tabela de visitantes';
 
--- Copiando dados para a tabela checkintour.visitantes: ~9 rows (aproximadamente)
-/*!40000 ALTER TABLE `visitantes` DISABLE KEYS */;
-INSERT INTO `visitantes` (`visitante_id`, `visitante_nome`, `visitante_rg`, `visitante_data_entrada`, `tipo_visitante_id`, `usuario_id`, `visitante_status`) VALUES
-	(18, 'Edilo Sousa da Silva', 19803531, '2022-09-20 18:19:02', 1, 1, 1),
-	(19, 'Reginaldo Sena Farias', 17845257, '2022-09-20 18:21:13', 1, 1, 1),
-	(20, 'Fernando Chagas Silva', 12545784, '2022-09-20 18:21:42', 2, 1, 1);
-/*!40000 ALTER TABLE `visitantes` ENABLE KEYS */;
+-- Exportação de dados foi desmarcado.
 
 -- Copiando estrutura para trigger checkintour.visitantes_after_insert
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION';
